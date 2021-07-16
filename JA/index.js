@@ -10,40 +10,38 @@ app.use(express.json())
 app.post('/addPerson', function(req, res){
     console.log('adding a person')
     axios.post('http://java-sample-api-2020.herokuapp.com/addPerson', req.body)
-    .then(function(apiResponse){
-        res.json({"message":`Person added.`})
-    })
+        .then(function(apiResponse){
+            res.json({"message":`Person added.`})
+        })
 })
 
 //create a route called : /getAllPeople
 //URL : http://java-sample-api-2020.herokuapp.com/getAllPeople
 app.get('/getAllPeople', function(req, res) {
     console.log("showing all the people")
-    //res.json({'message':'showing all the people.'})
-    axios.get('http://java-sample-api-2020.herokuapp.com/getAllPeople')
+    data = axios.get('http://java-sample-api-2020.herokuapp.com/getAllPeople')
         .then((response) => {
             const data = response.data
-            res.json({"message":"Users shown", "Users":`${data.json}`})
+            res.json({"message":"Users shown", "Users":`${data['1']['name']}`})
             console.log(data)
         })
-/*
-        .then(function() {
-            res.json({"message":"Users shown", "Users":`${data}`})
-            console.log(data)
-        })
-*/
-/*
-    async function axiosTest() {
-        const axiosResponse = await axios.get('http://java-sample-api-2020.herokuapp.com/getAllPeople')
-        console.log(axiosResponse.json)
-        res.json({"message":"Users shown", "Users":`${axiosResponse.json}`})
-    }
-*/
-
+    console.log(data)
 })
 
 //route name : /deletePerson
 //URL : http://java-sample-api-2020.herokuapp.com/deletePerson/:UserId
+app.delete('/deletePerson', function(req, res){
+    console.log(`Deleting the Person with ID ${req.query['id']}`)  
+    const id = req.query['id']
+    const url = 'http://java-sample-api-2020.herokuapp.com/deletePerson?id='+id
+    console.log(`${url}`)
+    axios.delete(url)
+        .then((response) => {
+            console.log(`${response.data}`)
+            res.json({"message":"Successfully deleted. "})
+        })
+})
+
 
 app.listen(3000, function(){
     console.log('API is listening.')
