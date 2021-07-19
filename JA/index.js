@@ -13,6 +13,10 @@ app.post('/addPerson', function(req, res){
         .then(function(apiResponse){
             res.json({"message":`Person added.`})
         })
+        .catch((error) => {
+            console.log(error);
+            res.json({"message":"Unsuccessful. "})
+        })
 })
 
 //create a route called : /getAllPeople
@@ -22,9 +26,14 @@ app.get('/getAllPeople', function(req, res) {
     data = axios.get('http://java-sample-api-2020.herokuapp.com/getAllPeople')
         .then((response) => {
             const data = response.data
-            res.json({"message":"Users shown", "Users":`${data['1']['name']}`})
+            res.json({"message":"Users shown", "Users":`${data}`})
             console.log(data)
         })
+        .catch((error) => {
+            console.log(error);
+            res.json({"message":"Unsuccessful. "})
+        })
+        
     console.log(data)
 })
 
@@ -39,6 +48,10 @@ app.delete('/deletePerson', function(req, res){
         .then((response) => {
             console.log(`${response.data}`)
             res.json({"message":"Successfully deleted. "})
+        })
+        .catch((error) => {
+            console.log(error);
+            res.json({"message":"Unsuccessful. "})
         })
 })
 
