@@ -13,6 +13,11 @@ app.post('/addPerson', (req, res) => {
         console.log(res.data)
         res.status(200).json(res.data)
     });
+
+    //Asynchronous Error Handling
+    Promise.resolve().then(() => {
+        throw new Error('Broken')
+    }).catch(next)
 });
 
 //DELETE Route (/deletePerson/:id)
@@ -24,6 +29,11 @@ app.delete('/deletePerson/:id', (req, res) => {
         console.log(res.data)
         res.status(200).json(res.data)
     });
+
+    //Asynchronous Error Handling
+    Promise.resolve().then(() => {
+        throw new Error('Broken')
+    }).catch(next)
 });
 
 //GET Route (/getAllPeople)
@@ -32,6 +42,11 @@ app.get('/getAllPeople', (req, res) => {
     .then((res) => {
         console.log(response)
     });
+
+    //Asynchronous Error Handling
+    Promise.resolve().then(() => {
+        throw new Error('Broken')
+    }).catch(next)
 });
 
 app.use(express.json());
