@@ -26,7 +26,7 @@ app.get('/getAllPeople', function(postmanReq, postmanRes) {
     axios.get('http://java-sample-api-2020.herokuapp.com/getAllPeople')
     .then((response) => {
         console.log(response.data)
-        postmanRes.status(200).json({"message":"users in console"})
+        postmanRes.status(200).json({"message":response.data})
     })
     //catch for errors should be working
     .catch((error) => {
