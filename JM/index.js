@@ -21,13 +21,12 @@ app.get('/getAllPeople', function(postmanRequest, postmanresponse){
         .then((response) => {
             const data = response.data
             postmanresponse.json({"message": "Users shown", "Users": data})
-            console.log(data)
+            console.log(response.data)
         })
         .catch((error) => {
             console.log(error);
             postmanresponse.json({"message": "Error "})
         })
-    console.log(data)
 })
 
 app.delete('/deletePerson', function(postmanRequest, postmanresponse){
