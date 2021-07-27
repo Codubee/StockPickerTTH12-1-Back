@@ -41,8 +41,8 @@ app.delete('/deletePerson', function(postmanReq, postmanRes) {
     //Note: query must change depending on what the user enters (so ?id=1 shouldn't be hardwritten like it is shown, but should be based on
     //what the user says)
     console.log("Removing a person...")
-    //console.log("our current query: " + postmanReq.query.id) //testing how to add user query correctly (according to expressJS docs)
-    axios.delete('https://java-sample-api-2020.herokuapp.com/deletePerson?id=' + postmanReq.query.id)   
+    userQuery = postmanReq.query.id
+    axios.delete('https://java-sample-api-2020.herokuapp.com/deletePerson?id=' + userQuery)   
     .then((response) => {
         console.log(response.data)
         postmanRes.status(200).json({"message":"user removed"})
