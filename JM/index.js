@@ -9,6 +9,10 @@ app.post('/addPerson', function(postmanRequest, postmanresponse){
     .then(function(apiResopnse){
         postmanresponse.json({"message": "User added"})
     })
+     .catch((error) => {
+         console.log(error);
+         postmanresponse.json({"message": "Error "})
+    })
 })
 
 app.get('/getAllPeople', function(postmanRequest, postmanresponse){
