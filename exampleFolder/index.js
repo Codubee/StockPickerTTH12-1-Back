@@ -9,44 +9,44 @@ app.post('/addPerson', (req, res) => {
     const body = req.body
 
     axios.post('http://java-sample-api-2020.herokuapp.com/addPerson',body)
-    .then((res) => {
+    .then((Response) => {
         console.log(res.data)
         res.status(200).json(res.data)
-    });
+    })
 
-    //Asynchronous Error Handling
-    Promise.resolve().then(() => {
-        throw new Error('Broken')
-    }).catch(next)
+    .catch((error) => {
+        console.log("Error Has Occured")
+        res.json({ErrorResponse: "Unsuccessful Route"})
+    })
 });
 
 //DELETE Route (/deletePerson/:id)
 app.delete('/deletePerson/:id', (req, res) => {
     const { id } = req.params;
 
-    axios.delete('https://java-sample-api-2020.herokuapp.com/deletePerson?id=1', id)
-    .then((res) => {
+    axios.delete('https://java-sample-api-2020.herokuapp.com/deletePerson?id='+id, id)
+    .then((Response) => {
         console.log(res.data)
         res.status(200).json(res.data)
-    });
+    })
 
-    //Asynchronous Error Handling
-    Promise.resolve().then(() => {
-        throw new Error('Broken')
-    }).catch(next)
+    .catch((error) => {
+        console.log("Error Has Occured")
+        res.json({ErrorResponse: "Unsuccessful Route"})
+    })
 });
 
 //GET Route (/getAllPeople)
 app.get('/getAllPeople', (req, res) => {
     axios.get('http://java-sample-api-2020.herokuapp.com/getAllPeople')
-    .then((res) => {
+    .then((Response) => {
         console.log(response)
-    });
+    })
 
-    //Asynchronous Error Handling
-    Promise.resolve().then(() => {
-        throw new Error('Broken')
-    }).catch(next)
+    .catch((error) => {
+        console.log("Error Has Occured")
+        res.json({ErrorResponse: "Unsuccessful Route"})
+    })
 });
 
 app.use(express.json());
