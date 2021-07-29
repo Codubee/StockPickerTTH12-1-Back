@@ -2,6 +2,7 @@ const express = require('express');
 var app = express();
 const axios = require('axios');
 const { response } = require('express');
+app.use(express.json());
 
 //POST Route (/addPerson)
 app.post('/addPerson', (req, res) => {
@@ -9,9 +10,9 @@ app.post('/addPerson', (req, res) => {
     const body = req.body
 
     axios.post('http://java-sample-api-2020.herokuapp.com/addPerson',body)
-    .then((Response) => {
-        console.log(res.data)
-        res.status(200).json(res.data)
+    .then((response) => {
+        console.log(response.data)
+        res.status(200).json(response.data)
     })
 
     .catch((error) => {
@@ -20,14 +21,13 @@ app.post('/addPerson', (req, res) => {
     })
 });
 
-//DELETE Route (/deletePerson/:id)
-app.delete('/deletePerson/:id', (req, res) => {
-    const { id } = req.params;
+//DELETE Route (/deletePerson)
+app.delete('/deletePerson', (req, res) => {
 
-    axios.delete('https://java-sample-api-2020.herokuapp.com/deletePerson?id='+id, id)
-    .then((Response) => {
-        console.log(res.data)
-        res.status(200).json(res.data)
+    axios.delete('https://java-sample-api-2020.herokuapp.com/deletePerson?id='+id)
+    .then((response) => {
+        console.log(response.data)
+        res.status(200).json(response.data)
     })
 
     .catch((error) => {
@@ -39,7 +39,7 @@ app.delete('/deletePerson/:id', (req, res) => {
 //GET Route (/getAllPeople)
 app.get('/getAllPeople', (req, res) => {
     axios.get('http://java-sample-api-2020.herokuapp.com/getAllPeople')
-    .then((Response) => {
+    .then((response) => {
         console.log(response)
     })
 
@@ -49,4 +49,6 @@ app.get('/getAllPeople', (req, res) => {
     })
 });
 
-app.use(express.json());
+app.listen(8080, function() {
+    console.log('API is working')
+})
