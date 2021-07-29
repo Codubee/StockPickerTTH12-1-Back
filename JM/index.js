@@ -17,10 +17,10 @@ app.post('/addPerson', function(postmanRequest, postmanresponse){
 
 app.get('/getAllPeople', function(postmanRequest, postmanresponse){
     const url = 'http://java-sample-api-2020.herokuapp.com/getAllPeople'
-    data = axios.get(url)
+    axios.get(url)
         .then((response) => {
             const data = response.data
-            postmanresponse.json({"message": "Users shown", "Users": data})
+            postmanresponse.json({"message": "Users shown", "Users": response.data})
             console.log(response.data)
         })
         .catch((error) => {
