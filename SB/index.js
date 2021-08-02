@@ -23,6 +23,7 @@ app.post('/addPerson', (req, res) => {
 
 //DELETE Route (/deletePerson)
 app.delete('/deletePerson', (req, res) => {
+    const { id } = req.params;
 
     axios.delete('https://java-sample-api-2020.herokuapp.com/deletePerson?id='+id)
     .then((response) => {
@@ -41,6 +42,7 @@ app.get('/getAllPeople', (req, res) => {
     axios.get('http://java-sample-api-2020.herokuapp.com/getAllPeople')
     .then((response) => {
         console.log(response)
+        res.status(200).json(response.data)
     })
 
     .catch((error) => {
