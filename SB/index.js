@@ -23,7 +23,7 @@ app.post('/addPerson', (req, res) => {
 
 //DELETE Route (/deletePerson)
 app.delete('/deletePerson', (req, res) => {
-    const { id } = req.params;
+    const { id } = req.params.id
 
     axios.delete('https://java-sample-api-2020.herokuapp.com/deletePerson?id='+id)
     .then((response) => {
