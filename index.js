@@ -5,7 +5,7 @@ app.use(express.json())
 
 
 
-app.post('/stocks/addStock', function(req, res){
+app.post('/addStock', function(req, res){
     const data = req.body
     const url ='https://codubee-projects-api.herokuapp.com/stocks/addStock'
     axios.post(url, data)
