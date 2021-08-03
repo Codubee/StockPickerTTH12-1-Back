@@ -9,17 +9,19 @@ app.post('/addPerson', function(postmanRequest, postmanresponse){
     .then(function(apiResopnse){
         postmanresponse.json({"message": "User added"})
     })
-    .catch((error) => {
-        console.log(error);
-        postmanresponse.json({"message": "Error "})
-   })
+
+     .catch((error) => {
+         console.log(error);
+         postmanresponse.json({"message": "Error "})
+    })
 })
 
 app.get('/getAllPeople', function(postmanRequest, postmanresponse){
     const url = 'http://java-sample-api-2020.herokuapp.com/getAllPeople'
-    axios.get(url) //Edit
+
+    axios.get(url)
         .then((response) => {
-            const data = response.data
+
             postmanresponse.json({"message": "Users shown", "Users": response.data})
             console.log(response.data)
         })
@@ -27,7 +29,7 @@ app.get('/getAllPeople', function(postmanRequest, postmanresponse){
             console.log(error);
             postmanresponse.json({"message": "Error "})
         })
-    //console.log(data)
+
 })
 
 app.delete('/deletePerson', function(postmanRequest, postmanresponse){

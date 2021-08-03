@@ -7,11 +7,12 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "node index.js",
     "client": "cd ../ && npm start --prefix frontend",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "start": "node index.js"
   },
   "author": "",
   "engines": {
-        "node": "12.18.3"
+    "node": "12.18.3"
   },
   "license": "ISC",
   "dependencies": {
