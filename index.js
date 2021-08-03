@@ -18,7 +18,8 @@ app.post('/stocks/addStock', function(req, res){
 })
 
 
-
+/*
 app.listen(3000, function(){
     console.log('API is listening.')
 })
+*/
