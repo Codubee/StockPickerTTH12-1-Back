@@ -8,11 +8,11 @@ app.get('/getWeather', function(req, res){
     axios.get(url)
         .then((response) => {
             console.log(response.data)
-            res.status(200).json({"Temperature is: ": response.data + " F"})
+            res.status(200).json({"Temp: ": response.data})
         })
         .catch((error) => {
             console.log(error);
-            postmanresponse.json({"Error": "Couldn't load weather"})
+            res.json({"Error": "Couldn't load weather"})
         })
 })
 
