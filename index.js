@@ -8,7 +8,7 @@ app.get('/getWeather', function(req, res){
     axios.get(url)
         .then((response) => {
             console.log(response.data)
-            res.status(200).json({"Temp: ": response.data})
+            res.status(200).json({"Temp": response.data})
         })
         .catch((error) => {
             console.log(error);
