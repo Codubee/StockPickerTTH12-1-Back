@@ -1,9 +1,3 @@
-const express = require('express');
-var app = express();
-const axios = require('axios');
-const { response } = require('express');
-app.use(express.json());
-
 //DELETE Stock Route
 app.delete('/stocks/deleteStock', (postmanRequest, postmanResponse) => {
     const { userId } = postmanRequest.params.userId
@@ -20,7 +14,3 @@ app.delete('/stocks/deleteStock', (postmanRequest, postmanResponse) => {
         res.json({"ErrorResponse": "Couldnt Delete Stock"})
     })
 });
-
-app.listen(8080, function() {
-    console.log('API is working')
-})
