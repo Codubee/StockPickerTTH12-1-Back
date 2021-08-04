@@ -3,13 +3,12 @@ const app = express()
 const axios = require('axios')
 app.use(express.json())
 
-//Route to get a stock from the database. Calling https://codubee-projects-api.herokuapp.com/stocks/getStockData
 app.get('/getStockData', function(postmanReq, postmanRes) {
     console.log("Getting Data for a Stock...")
     axios.get('https://codubee-projects-api.herokuapp.com/stocks/getStockData')
     .then((response) => {
         console.log(response.data)
-        postmanRes.status(200).json({"message":response.data})
+        postmanRes.status(200).json({"Data":response.data})
     }) 
     .catch((error) => {
         console.log(error)
