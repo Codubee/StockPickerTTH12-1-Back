@@ -9,6 +9,7 @@ app.post('/addPerson', function(postmanRequest, postmanresponse){
     .then(function(apiResopnse){
         postmanresponse.json({"message": "User added"})
     })
+
      .catch((error) => {
          console.log(error);
          postmanresponse.json({"message": "Error "})
@@ -17,8 +18,10 @@ app.post('/addPerson', function(postmanRequest, postmanresponse){
 
 app.get('/getAllPeople', function(postmanRequest, postmanresponse){
     const url = 'http://java-sample-api-2020.herokuapp.com/getAllPeople'
+
     axios.get(url)
         .then((response) => {
+
             postmanresponse.json({"message": "Users shown", "Users": response.data})
             console.log(response.data)
         })
@@ -26,6 +29,7 @@ app.get('/getAllPeople', function(postmanRequest, postmanresponse){
             console.log(error);
             postmanresponse.json({"message": "Error "})
         })
+
 })
 
 app.delete('/deletePerson', function(postmanRequest, postmanresponse){
