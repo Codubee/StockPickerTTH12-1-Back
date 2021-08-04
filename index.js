@@ -18,8 +18,6 @@ app.post('/addStock', function(req, res){
 })
 
 
-/*
-app.listen(3000, function(){
-    console.log('API is listening.')
-})
-*/
+app.listen( process.env.PORT || 8080, () => console.log('Example app listening at http://localhost:8080'))
+
+
