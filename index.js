@@ -49,5 +49,18 @@ app.delete('/stocks/deleteStock', (postmanRequest, postmanResponse) => {
 });
 
 
+app.get('/getStockData', function(postmanReq, postmanRes) {
+    console.log("Getting Data for a Stock...")
+    axios.get('https://codubee-projects-api.herokuapp.com/stocks/getStockData')
+    .then((response) => {
+        console.log(response.data)
+        postmanRes.status(200).json({"Data":response.data})
+    }) 
+    .catch((error) => {
+        console.log(error)
+        postmanRes.json({"error":"could not get stock data"})
+    })
+})
+
 
 app.listen( process.env.PORT || 8080, () => console.log('Example app listening at http://localhost:8080'))
