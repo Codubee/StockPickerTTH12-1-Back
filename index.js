@@ -32,9 +32,9 @@ app.post('/addStock', function(req, res){
 })
 
 
-app.delete('/stocks/deleteStock', (postmanRequest, postmanResponse) => {
-    const { userId } = postmanRequest.params.userId
-    const { stockId } = postmanRequest.params.stockId
+app.delete('/deleteStock', (postmanRequest, postmanResponse) => {
+    const { userId } = postmanRequest.query.userId
+    const { stockId } = postmanRequest.query.stockId
 
     axios.delete('https://codubee-projects-api.herokuapp.com/stocks/deleteStock?userId='+userId + '&stockId='+stockId)
     .then((response) => {
@@ -55,7 +55,7 @@ app.get('/getStockData', function(postmanReq, postmanRes) {
     .then((response) => {
         console.log(response.data)
         postmanRes.status(200).json({"Data":response.data})
-    }) 
+    })
     .catch((error) => {
         console.log(error)
         postmanRes.json({"error":"could not get stock data"})
