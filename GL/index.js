@@ -26,7 +26,7 @@ app.get('/getAllPeople', function(req, res) {
     data = axios.get('http://java-sample-api-2020.herokuapp.com/getAllPeople')
         .then((response) => {
             const data = response.data
-            res.json({"message":"Users shown", "Users":`${response.data}`})
+                res.json({"message":"Users shown", "Users": response.data})
             console.log(response.data)
         })
         .catch((error) => {
@@ -46,7 +46,7 @@ app.delete('/deletePerson', function(req, res){
     
     axios.delete(url)
         .then((response) => {
-            console.log(`${response.data}`)
+            console.log(`response.data`)
             res.json({"message":"Successfully deleted. "})
         })
         .catch((error) => {
