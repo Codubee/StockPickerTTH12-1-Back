@@ -33,8 +33,8 @@ app.post('/addStock', function(req, res){
 
 
 app.delete('/deleteStock', (postmanRequest, postmanResponse) => {
-    const { userId } = postmanRequest.query.userId
-    const { stockId } = postmanRequest.query.stockId
+    const userId = postmanRequest.query.userId
+    const stockId = postmanRequest.query.stockId
 
     axios.delete('https://codubee-projects-api.herokuapp.com/stocks/deleteStock?userId='+userId + '&stockId='+stockId)
     .then((response) => {
