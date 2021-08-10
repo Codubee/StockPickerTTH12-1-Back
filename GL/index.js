@@ -25,7 +25,7 @@ app.get('/getAllPeople', function(req, res) {
     console.log("List of registered users")
     data = axios.get('http://java-sample-api-2020.herokuapp.com/getAllPeople')
         .then((response) => {
-            const data = response.data
+            
                 res.json({"message":"Users shown", "Users": response.data})
             console.log(response.data)
         })
