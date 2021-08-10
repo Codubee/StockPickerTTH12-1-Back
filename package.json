@@ -8,7 +8,9 @@
     "server": "node index.js",
     "client": "cd ../ && npm start --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "start": "node index.js"
+
+    "start":"node index.js"
+
   },
   "author": "",
   "engines": {
@@ -17,6 +19,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.21.1",
+    "body-parser": "^1.19.0",
     "concurrently": "^6.1.0",
     "cors": "^2.8.5",
     "express": "^4.17.1"
