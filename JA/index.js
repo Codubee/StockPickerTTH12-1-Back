@@ -3,6 +3,22 @@ const app = express()
 const axios = require('axios')
 app.use(express.json())
 
+
+//GET https://api.yelp.com/v3/events
+//Create a route to connect to yelps event api
+app.get('/getEvents', function(req, res){
+    url = 'https://api.yelp.com/v3/events'
+    axios.get(url)
+        .then(function(response){
+            res.json({message:"success", data: response.data})
+        })
+        .catch(function(err) {
+            res.json({message:"unsuccessful", error: err})
+        })
+})
+
+
+
 //create a route that adds a person to the db. 
 //must be able to handle incoming details of the person being added. 
 //route name : /addPerson
