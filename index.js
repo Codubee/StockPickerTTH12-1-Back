@@ -2,7 +2,8 @@ const express = require('express')
 const app = express()
 const axios = require('axios')
 app.use(express.json())
-
+var cors = require('cors')
+app.use(cors())
 
 app.get('/getWeather', function(req, res){
     const url = 'https://codubee-projects-api.herokuapp.com/getWeather'
