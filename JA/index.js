@@ -13,11 +13,11 @@ app.get('/getEvents', function(req, res){
     axios.get(url, config)
         .then(function(response){
             data = response.data['events']
-            let allInfo = []
+            let allIds = []
             for(let i = 0; i < data.length; i++){
-                allInfo.push(data[i].id)
+                allIds.push(data[i].id)
             }
-            res.json({message:allInfo})
+            res.json({message:"success", ids: allIds})
         })
         .catch(function(err) {
             res.json({message:"unsuccessful", error: err})
@@ -28,9 +28,11 @@ app.get('/getEvents', function(req, res){
 //Create a route to connect to yelps event api
 app.get('/getEvent', function(req, res){
     const config = {headers:{"Authorization":'Bearer ' + process.env.API_TOKEN}}
-    url = 'https://api.yelp.com/v3/events/'  + req.query["id"]
+    id = req.query["id"]
+    url = 'https://api.yelp.com/v3/events/'  + id
     axios.get(url, config)
         .then(function(response){
+            console.log("url: " + url)
             res.json(response.data)
         })
         .catch(function(err){
@@ -42,12 +44,16 @@ app.get('/getEvent', function(req, res){
 //Create a route to connect to yelps search api
 app.get('/getBusiness', function(req, res){
     const config = {headers:{"Authorization":'Bearer ' + process.env.API_TOKEN}}
-    id = req.query["id"]
-    url = 'https://api.yelp.com/v3/businesses' 
-    console.log(id)
+    const latitude = req.query["latitude"]
+    const longitude = req.query["longitude"]
+    const url = 'https://api.yelp.com/v3/businesses/search?latitude=' + latitude + '&longitude='+ longitude
     axios.get(url, config)
         .then(function(response){
-            res.json(response.body)
+            data = response.data
+            console.log("Keys : " + Object.keys(data))
+            console.log("Number of Businesses : " + data["businesses"].length)
+            console.log("Total Available : " + data["total"])
+            res.json({message: "success", data: data})
         })
         .catch(function(err){
             res.json({message:"unsuccessful", error:err})
