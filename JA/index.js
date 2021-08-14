@@ -12,12 +12,7 @@ app.get('/getEvents', function(req, res){
     url = 'https://api.yelp.com/v3/events'
     axios.get(url, config)
         .then(function(response){
-            data = response.data['events']
-            let allIds = []
-            for(let i = 0; i < data.length; i++){
-                allIds.push(data[i].id)
-            }
-            res.json({message:"success", ids: allIds})
+            res.json(response.data)
         })
         .catch(function(err) {
             res.json({message:"unsuccessful", error: err})
@@ -32,7 +27,6 @@ app.get('/getEvent', function(req, res){
     url = 'https://api.yelp.com/v3/events/'  + id
     axios.get(url, config)
         .then(function(response){
-            console.log("url: " + url)
             res.json(response.data)
         })
         .catch(function(err){
@@ -49,11 +43,7 @@ app.get('/getBusiness', function(req, res){
     const url = 'https://api.yelp.com/v3/businesses/search?latitude=' + latitude + '&longitude='+ longitude
     axios.get(url, config)
         .then(function(response){
-            data = response.data
-            console.log("Keys : " + Object.keys(data))
-            console.log("Number of Businesses : " + data["businesses"].length)
-            console.log("Total Available : " + data["total"])
-            res.json({message: "success", data: data})
+            res.json(response.data)
         })
         .catch(function(err){
             res.json({message:"unsuccessful", error:err})
