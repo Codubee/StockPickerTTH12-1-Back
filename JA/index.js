@@ -36,7 +36,7 @@ app.get('/getEvent', function(req, res){
 
 //GET https://api.yelp.com/v3/businesses/search
 //Create a route to connect to yelps search api
-app.get('/getBusiness', function(req, res){
+app.get('/getBusinesses', function(req, res){
     const config = {headers:{"Authorization":'Bearer ' + process.env.API_TOKEN}}
     const latitude = req.query["latitude"]
     const longitude = req.query["longitude"]
