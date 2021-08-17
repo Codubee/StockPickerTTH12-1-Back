@@ -14,7 +14,7 @@ app.get('/getMatches', function(req, res){
     axios.get(url)
         .then((response) => {
             console.log(response.data)
-            res.status(200).json({"Matches": response.data})
+            res.status(200).json(response.data)
         })
         .catch((error) => {
             console.log(error);
