@@ -21,4 +21,3 @@ app.get('/getWeather', function(req, res){
 app.listen(8080, function(){
     console.log("Api is listening")
 })
-
