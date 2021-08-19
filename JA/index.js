@@ -9,7 +9,7 @@ app.use(express.json())
 //Create a route to get the details of an event
 app.get('/getEvents', function(req, res){
     const config = {headers:{"Authorization":'Bearer ' + process.env.API_TOKEN}}
-    url = 'https://api.yelp.com/v3/events'
+    const url = 'https://api.yelp.com/v3/events'
     axios.get(url, config)
         .then(function(response){
             res.json(response.data)
@@ -23,8 +23,8 @@ app.get('/getEvents', function(req, res){
 //Create a route to connect to yelps event api
 app.get('/getEvent', function(req, res){
     const config = {headers:{"Authorization":'Bearer ' + process.env.API_TOKEN}}
-    id = req.query["id"]
-    url = 'https://api.yelp.com/v3/events/'  + id
+    const id = req.query["id"]
+    const url = 'https://api.yelp.com/v3/events/'  + id
     axios.get(url, config)
         .then(function(response){
             res.json(response.data)
