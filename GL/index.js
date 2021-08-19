@@ -40,14 +40,16 @@ app.get('/getAllPeople', function(req, res) {
 //route to delete a specific person
 
 app.delete('/deletePerson', function(req, res){
-    console.log(`ID : ${req.query['id']} removal`)  
+
     const id = req.query['id']
     const url = 'http://java-sample-api-2020.herokuapp.com/deletePerson?id='+id
     
     axios.delete(url)
         .then((response) => {
-            console.log(`response.data`)
+            console.log(response.data)
+            console.log(req.query['id'] + 'deleted')  
             res.json({"message":"Successfully deleted. "})
+            
         })
         .catch((error) => {
             console.log(error);

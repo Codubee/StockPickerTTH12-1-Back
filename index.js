@@ -2,7 +2,26 @@ const express = require('express')
 const app = express()
 const axios = require('axios')
 app.use(express.json())
+var cors = require('cors')
+app.use(cors())
 
+
+app.get('/getMatches', function(req, res){
+      
+    const id = req.query['userId']
+   const url = 'https://codubee-projects-api.herokuapp.com/stocks/getMatches?userId='+id
+    
+    axios.get(url)
+        .then((response) => {
+            console.log(response.data)
+            res.status(200).json(response.data)
+        })
+        .catch((error) => {
+            console.log(error);
+            res.json({"message": "api call didnt connect"})
+        })
+        
+})
 
 app.get('/getWeather', function(req, res){
     const url = 'https://codubee-projects-api.herokuapp.com/getWeather'
@@ -61,6 +80,8 @@ app.get('/getStockData', function(postmanReq, postmanRes) {
         postmanRes.json({"error":"could not get stock data"})
     })
 })
+
+
 
 
 app.listen( process.env.PORT || 8080, () => console.log('Example app listening at http://localhost:8080'))
