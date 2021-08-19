@@ -1,7 +1,54 @@
 const express = require("express")
 const app = express()
 const axios = require('axios')
+require("dotenv").config();
 app.use(express.json())
+
+
+//GET https://api.yelp.com/v3/events
+//Create a route to get the details of an event
+app.get('/getEvents', function(req, res){
+    const config = {headers:{"Authorization":'Bearer ' + process.env.API_TOKEN}}
+    const url = 'https://api.yelp.com/v3/events'
+    axios.get(url, config)
+        .then(function(response){
+            res.json(response.data)
+        })
+        .catch(function(err) {
+            res.json({message:"unsuccessful", error: err})
+        })
+})
+
+//GET https://api.yelp.com/v3/events/{id}
+//Create a route to connect to yelps event api
+app.get('/getEvent', function(req, res){
+    const config = {headers:{"Authorization":'Bearer ' + process.env.API_TOKEN}}
+    const id = req.query["id"]
+    const url = 'https://api.yelp.com/v3/events/'  + id
+    axios.get(url, config)
+        .then(function(response){
+            res.json(response.data)
+        })
+        .catch(function(err){
+            res.json({message:"unsuccessful", error:err})
+        })
+})
+
+//GET https://api.yelp.com/v3/businesses/search
+//Create a route to connect to yelps search api
+app.get('/getBusinesses', function(req, res){
+    const config = {headers:{"Authorization":'Bearer ' + process.env.API_TOKEN}}
+    const latitude = req.query["latitude"]
+    const longitude = req.query["longitude"]
+    const url = 'https://api.yelp.com/v3/businesses/search?latitude=' + latitude + '&longitude='+ longitude
+    axios.get(url, config)
+        .then(function(response){
+            res.json(response.data)
+        })
+        .catch(function(err){
+            res.json({message:"unsuccessful", error:err})
+        })
+})
 
 //create a route that adds a person to the db. 
 //must be able to handle incoming details of the person being added. 
